@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#e8262d">
+  <title>THINK A1 — English Practice</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="topbar">
+      <button id="backBtn" class="back-btn" aria-label="Back">&#8592;</button>
+      <h1 class="brand">THINK A1</h1>
+      <span class="unit-pill" id="unitPill">Unit 8</span>
+    </header>
+
+    <!-- Stage stepper -->
+    <nav class="stepper" id="stepper" aria-label="Lesson stages"></nav>
+
+    <div class="progress-row">
+      <span id="progressLabel">Word 1 of 8</span>
+      <span id="progressPct" class="pct">0%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <!-- Main lesson view -->
+    <main id="lessonView" class="panel">
+      <p class="panel-title" id="panelTitle">WORDS TO LEARN</p>
+
+      <!-- Word / sentence card -->
+      <section class="card" id="itemCard"></section>
+
+      <!-- Instruction banner -->
+      <div class="instruction" id="instruction"></div>
+
+      <!-- Action buttons -->
+      <div class="actions">
+        <button id="listenBtn" class="action-btn listen">🔊 <span>Listen</span></button>
+        <button id="recordBtn" class="action-btn record">🎙 <span>Record</span></button>
+        <button id="playBtn" class="action-btn play" disabled>▶️ <span>Play</span></button>
+      </div>
+      <div class="rec-status" id="recStatus" hidden>
+        <span class="rec-dot"></span><span id="recStatusText">Recording…</span>
+        <div class="level-track"><div class="level-fill" id="levelFill"></div></div>
+      </div>
+
+      <!-- Scoring status -->
+      <div class="asr-status" id="asrStatus" hidden>
+        <span class="spinner"></span>
+        <span id="asrStatusText">Scoring your pronunciation…</span>
+      </div>
+
+      <p class="mic-warning" id="micWarning" hidden></p>
+
+      <!-- Results -->
+      <section class="results" id="results" hidden>
+        <div class="score-row">
+          <span class="stars" id="stars"></span>
+          <span class="score-pct" id="scorePct"></span>
+          <span class="score-msg" id="scoreMsg"></span>
+        </div>
+        <div class="breakdown" id="breakdown" hidden></div>
+        <p class="estimate-note" id="estimateNote" hidden></p>
+
+        <!-- Per-word pronunciation feedback -->
+        <div class="word-scores-box" id="wordScoresBox" hidden>
+          <p class="recording-title">📝 WORD-BY-WORD</p>
+          <div class="word-scores" id="wordScores"></div>
+          <p class="word-legend">Tap a word to hear it. Green = good · Orange = improve · Red = mispronounced or missed.</p>
+        </div>
+
+        <div class="recording-box">
+          <p class="recording-title">🎵 YOUR RECORDING</p>
+          <div class="chart-wrap">
+            <span class="chart-label">PITCH</span>
+            <span class="chart-legend"><span class="leg model">- -</span> Model&nbsp;&nbsp;<span class="leg you">—</span> You</span>
+            <canvas id="pitchCanvas" height="90"></canvas>
+          </div>
+          <div class="chart-wrap">
+            <span class="chart-label">VOICE</span>
+            <canvas id="waveCanvas" height="80"></canvas>
+          </div>
+        </div>
+
+        <div class="yousaid-row">
+          <span class="yousaid-label">YOU SAID</span>
+          <span class="yousaid-text" id="youSaid"></span>
+        </div>
+
+        <ul class="tips" id="tipsList"></ul>
+
+        <button id="nextBtn" class="next-btn">Next →</button>
+      </section>
+
+      <div class="skip-row">
+        <button id="skipBtn" class="skip-btn">Skip this one →</button>
+      </div>
+    </main>
+
+    <!-- Stage intro view -->
+    <main id="introView" class="panel intro" hidden>
+      <div class="intro-emoji" id="introEmoji">🗣️</div>
+      <h2 id="introTitle">Sentences</h2>
+      <p id="introText"></p>
+      <button id="introStartBtn" class="next-btn">Start →</button>
+    </main>
+
+    <!-- Final summary view -->
+    <main id="summaryView" class="panel intro" hidden>
+      <div class="intro-emoji">🏆</div>
+      <h2>Unit complete!</h2>
+      <p class="summary-overall" id="summaryOverall"></p>
+      <ul class="summary-list" id="summaryList"></ul>
+      <button id="restartBtn" class="next-btn">Practice again ↻</button>
+    </main>
+
+    <footer class="foot-note">Use headphones for best results · Allow microphone access when asked</footer>
+  </div>
+
+  <audio id="playback" playsinline></audio>
+  <script src="app.js"></script>
+</body>
+</html>
